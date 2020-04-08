@@ -45,7 +45,7 @@ enum Signal {
 }
 
 const runCmd = (cmd: string, args: string[]) => {
-  const fullPath = resolve(join(process.cwd(), '../cadence-samples'));
+  const fullPath = resolve(join(process.cwd(), '../'));
   return new Promise((resolve, reject) => {
     const child = spawn(cmd, args, {
       cwd: fullPath,
