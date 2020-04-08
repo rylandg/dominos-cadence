@@ -1,0 +1,10 @@
+export enum PizzaPhase {
+  NONE = 'NONE',
+  ORDERED = 'ORDERED',
+  PREP = 'PREP',
+  BAKE = 'BAKE',
+  BOX = 'BOX',
+  DELIVERY = 'DELIVERY',
+  WAITING_FOR_DELIVERY = 'WAITING_FOR_DELIVERY',
+  DONE = 'DONE',
+}
