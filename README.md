@@ -18,142 +18,62 @@ See instructions for using CLI to register a domain(name as "samples-domain"): h
 make
 ```
 
-### Run HelloWorld Sample
-* Start workers for helloworld workflow and activities
+## Run Pizza Sample
+### Start workers for pizzaactivity workflow and activities
 ```
-./bin/helloworld -m worker
-```
-* Start workflow execution for helloworld workflow
-```
-./bin/helloworld -m trigger
+./bin/pizzaactivity -m worker
 ```
 
-### Commands to run other samples
+### Start NodeJS server
 
-#### cron
-```
-./bin/cron -m worker
-```
-Start workflow with cron expression scheduled to run every minute.
-```
-./bin/cron -m trigger -cron "* * * * *"
-```
+**Note you must have the following environment variables defined to run the server**
 
-#### dsl
-```
-./bin/dsl -m worker
-```
-```
-./bin/dsl -m trigger -dslConfig cmd/samples/dsl/workflow1.yaml
-./bin/dsl -m trigger -dslConfig cmd/samples/dsl/workflow2.yaml
+If you need a Pusher account, it's free so do so [here](https://dashboard.pusher.com/accounts/sign_up)
+
+```yaml
+PUSHER_APP_ID
+PUSHER_KEY
+PUSHER_SECRET
+PUSHER_CLUSTER
 ```
 
-#### expense
-See more details in https://github.com/uber-common/cadence-samples/blob/master/cmd/samples/expense/README.md
+Assuming those are in your environment, run:
 
-#### fileprocessing
-```
-./bin/fileprocessing -m worker
-```
-```
-./bin/fileprocessing -m trigger
+```bash
+cd pizza-backend
+npm install
+npm build-ts
+sudo npm run watch-node
 ```
 
-#### recipes/branch
-```
-./bin/branch -m worker
-```
-Run branch workflow
-```
-./bin/branch -m trigger -c branch
-```
-Run parallel branch workflow
-```
-./bin/branch -m trigger -c parallel this will run the parallel branch workflow
+> sudo is required to run the NodeJS process because it execs out to Docker. If your docker isn't installed as root, omit `sudo`
+
+### Start the React frontend
+
+**Note you must have the following environment variables defined to run the frontend**
+
+```yaml
+REACT_APP_PUSHER_ID
+REACT_APP_PUSHER_CLUSTER
 ```
 
-#### recipes/choice
-```
-./bin/choice -m worker
-```
-Run the single choice workflow
-```
-./bin/choice -m trigger -c single
-```
-Run the multi choice workflow
-```
-./bin/choice -m trigger -c multi
+Assuming those are in your environment, run:
+
+```bash
+cd pizza-frontend
+npm install
+npm start
 ```
 
-#### greetings
-```
-./bin/greetings -m worker
-```
-```
-./bin/greetings -m trigger
-```
+### Use the Pizza tracker
 
-#### pickfirst
-```
-./bin/pickfirst -m worker
-```
-```
-./bin/pickfirst -m trigger
-```
+There are two pages for the tracking system, 1 for the customer and 1 for the worker.
 
-#### mutex
-```
-./bin/mutex -m worker
-```
-```
-./bin/mutex -m trigger
-```
+**customer site**
 
-#### retryactivity
-```
-./bin/retryactivity -m worker
-```
-```
-./bin/retryactivity -m trigger
-```
+http://localhost:3000/order
 
-#### splitmerge
-```
-./bin/splitmerge -m worker
-```
-```
-./bin/splitmerge -m trigger
-```
 
-#### timer
-```
-./bin/timer -m worker
-```
-```
-./bin/timer -m trigger
-```
+**worker site**
 
-#### childworkflow
-```
-./bin/childworkflow -m worker
-```
-```
-./bin/childworkflow -m trigger
-```
-
-#### dynamic
-```
-./bin/dynamic -m worker
-```
-```
-./bin/dynamic -m trigger
-```
-
-#### localactivity
-See more details in https://github.com/uber-common/cadence-samples/blob/master/cmd/samples/recipes/localactivity/README.md
-
-#### query
-See more details in https://github.com/uber-common/cadence-samples/blob/master/cmd/samples/recipes/query/README.md
-
-#### recovery
-See more details in https://github.com/uber-common/cadence-samples/blob/master/cmd/samples/recovery/README.md
+http://localhost:3000/make
