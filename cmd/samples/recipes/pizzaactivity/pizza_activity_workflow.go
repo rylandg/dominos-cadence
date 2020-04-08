@@ -171,6 +171,7 @@ type RequestData struct {
 
 type BData map[string]interface{}
 
+// REPLACE ME WITH YOUR NodeJS server endpoint
 var baseUrl = "https://d0c3003f.ngrok.io"
 
 func postRequest(r RequestData) (BData, error) {
