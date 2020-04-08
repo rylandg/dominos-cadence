@@ -13,6 +13,20 @@ See instructions for using CLI to register a domain(name as "samples-domain"): h
  
  
 ## Steps to run samples
+### Add NodeJS server URL to Go file
+
+The Cadence workflow needs to know where it can find the NodeJS server. I highly recommend setting up a simple SSH tunnel, but the default NodeJS address is
+
+http://localhost:4001
+
+Once you know the address you want to use, you'll need to change `cmd/samples/recipes/pizzaactivity/pizza_activity_workflow.go`:
+
+*line 174*
+```go
+// REPLACE ME WITH YOUR NodeJS server endpoint$
+var baseUrl = "https://d0c3003f.ngrok.io"
+```
+
 ### Build Samples
 ```
 make
@@ -20,6 +34,7 @@ make
 
 ## Run Pizza Sample
 ### Start workers for pizzaactivity workflow and activities
+
 ```
 ./bin/pizzaactivity -m worker
 ```
